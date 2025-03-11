@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint src/*",
-    "lint:fix": "eslint src/* --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "format": "npx prettier . --write",
     "prepare": "husky"
@@ -33,10 +33,10 @@
     "vite": "^6.2.0"
   },
   "lint-staged": {
-    "src/*.{js,html,css,jsx}": [
+    "src/**/*.{js,html,css,jsx}": [
       "prettier --write src/**/*"
     ],
-    "src/*.{js,jsx}": [
+    "src/**/*.{js,jsx}": [
       "eslint src/**/* --fix"
     ]
   }
