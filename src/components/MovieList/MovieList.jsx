@@ -1,15 +1,15 @@
 import "./MovieList.css";
+import MovieCard from "../MovieCard/MovieCard";
 
 export default function MovieList() {
   return (
     <section className="movie-list">
-      <div className="div1"></div>
-      <div className="div2"></div>
-      <div className="div3"></div>
-
-      <div className="div4"></div>
-      <div className="div5"></div>
-      <div className="div6"></div>
+      <MovieCard className="moviecard"></MovieCard>
+      <MovieCard className="moviecard"></MovieCard>
+      <MovieCard className="moviecard"></MovieCard>
+      <MovieCard className="moviecard"></MovieCard>
+      <MovieCard className="moviecard"></MovieCard>
+      <MovieCard className="moviecard"></MovieCard>
     </section>
   );
 }

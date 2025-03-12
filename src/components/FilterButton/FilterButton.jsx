@@ -16,11 +16,13 @@ export default function FilterButton() {
   ];
 
   return (
-    <Anchor
-      direction="horizontal"
-      items={AnchorItems}
-      className="anchor"
-      affix={false}
-    />
+    <div className="anchor-wrapper">
+      <Anchor
+        direction="horizontal"
+        items={AnchorItems}
+        className="anchor"
+        affix={false}
+      />
+    </div>
   );
 }

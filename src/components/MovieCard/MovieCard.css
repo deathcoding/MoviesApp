@@ -1,0 +1,72 @@
+@media screen and (min-width: 767px) {
+  .movie_card {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    max-width: 530px;
+  }
+  .card {
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+
+  .movie_image {
+    width: 183px;
+    height: 281px;
+  }
+
+  .description {
+    margin-left: 20px;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .date {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .tags {
+    display: flex;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .movie_card {
+    font-family: Inter;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .card {
+    display: flex;
+  }
+
+  .movie_image {
+    width: 60px;
+    height: 91px;
+    position: absolute;
+  }
+
+  .header {
+    margin-left: 83px;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .tags {
+    display: flex;
+  }
+
+  .rate {
+    margin-left: calc(40%);
+  }
+}
