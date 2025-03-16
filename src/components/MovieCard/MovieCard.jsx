@@ -1,37 +1,55 @@
-import { Card } from "antd";
-import { Tag } from "antd";
-import { Rate } from "antd";
-
-import img from "../../movie_img.png";
 import "./MovieCard.css";
+import { Card, Tag, Rate, ConfigProvider } from "antd";
+import formatOverviewText from "../../utils/formatOverviewText";
+import imgUrl from "../../utils/imageUrl";
+import formatDate from "../../utils/formatDate";
 
-export default function MovieCard() {
+export default function MovieCard({ name, text, rate, date, imgPath }) {
+  const imageForCard = imgUrl(imgPath);
+  const dateForCard = formatDate(date);
+  const textForCard = formatOverviewText(text, 150);
+
   return (
-    <Card className="movie_card">
-      <div className="card">
-        <img src={img} className="movie_image" alt="Poster" />
-        <div className="description">
-          <div className="header">
-            <h5 className="title">The way back</h5>
-            <span className="date">March 5, 2020 </span>
-            <ul className="tags">
-              <li>
-                <Tag>Action</Tag>
-              </li>
-              <li>
-                <Tag>Drama</Tag>
-              </li>
-            </ul>
+    <ConfigProvider
+      theme={{
+        components: {
+          Card: {
+            bodyPadding: 0,
+          },
+          Rate: {
+            starSize: 15,
+          },
+        },
+      }}
+    >
+      <Card className="movie_card">
+        <div className="card">
+          <img src={imageForCard} className="movie_image" alt="Poster" />
+          <div className="description">
+            <div className="header">
+              <span className="title">
+                <h5 className="title_text">{name}</h5>
+                <span className="rate_circle">{rate.toFixed(1)}</span>
+              </span>
+              <span className="date">{dateForCard}</span>
+              <ul className="tags">
+                <li>
+                  <Tag>Action</Tag>
+                </li>
+                <li>
+                  <Tag>Drama</Tag>
+                </li>
+              </ul>
+            </div>
+            <div className="content">
+              <p className="text">{textForCard}</p>
+            </div>
+            <div className="footer">
+              <Rate className="rate" allowHalf defaultValue={rate} count={10} />
+            </div>
           </div>
-          <p className="text">
-            A former basketball all-star, who has lost his wife and family
-            foundation in a struggle with addiction attempts to regain his soul
-            and salvation by becoming the coach of a disparate ethnically mixed
-            high ...
-          </p>
-          <Rate className="rate" allowHalf defaultValue={2.5} count={10} />
         </div>
-      </div>
-    </Card>
+      </Card>
+    </ConfigProvider>
   );
 }

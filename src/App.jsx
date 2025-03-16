@@ -1,16 +1,20 @@
 import FilterButton from "./components/FilterButton/FilterButton";
 import MovieList from "./components/MovieList/MovieList";
 import Search from "./components/Search/Search";
-import MoviePagination from "./components/Pagination/Pagination";
+import { Offline, Online } from "react-detect-offline";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <FilterButton />
-      <Search />
-      <MovieList />
-      <MoviePagination />
+      <Online>
+        <FilterButton />
+        <Search />
+        <MovieList />
+      </Online>
+      <Offline>
+        <div className="offline">It seems you don't have internet</div>
+      </Offline>
     </>
   );
 }

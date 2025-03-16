@@ -14,7 +14,11 @@
   },
   "dependencies": {
     "antd": "^5.24.3",
+    "axios": "^1.8.3",
+    "date-fns": "^4.1.0",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
+    "react-detect-offline": "^2.4.5",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
@@ -37,7 +41,6 @@
       "prettier --write src/**/*"
     ],
     "src/**/*.{js,jsx}": [
-      "eslint .",
       "eslint src/**/* --fix"
     ]
   }

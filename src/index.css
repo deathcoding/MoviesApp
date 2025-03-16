@@ -5,11 +5,9 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,9 +23,15 @@ a:hover {
   color: #535bf2;
 }
 
+html,
 body {
+  background-image: url("../img/photo-1739389716979-d62f1d6fe559.png");
+}
+body {
+  min-width: 1010px;
+  display: flex;
+  justify-content: center; /* Чтобы дочерние элементы (например, #root) не выходили за пределы */
   margin: 0;
-  background-color: #4f2f5d;
 }
 
 ul {
@@ -73,5 +77,12 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  body {
+    margin: 0 auto;
+    min-width: 320px;
   }
 }
