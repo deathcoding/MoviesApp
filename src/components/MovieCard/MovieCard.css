@@ -19,6 +19,7 @@
   .movie_image {
     width: 183px;
     height: 281px;
+    align-self: center;
   }
 
   .description {

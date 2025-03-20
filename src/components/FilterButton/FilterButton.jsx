@@ -1,19 +1,24 @@
 import { Anchor, ConfigProvider } from "antd";
 import "./FilterButton.css";
 
-export default function FilterButton() {
+export default function FilterButton({ setActiveFilter }) {
   const AnchorItems = [
     {
       key: "search",
       title: "Search",
-      href: "#part-1",
+      href: "#Search",
     },
     {
       key: "rated",
       title: "Rated",
-      href: "#part-2",
+      href: "#Rated",
     },
   ];
+
+  function handleClick(e, link) {
+    e.preventDefault();
+    setActiveFilter(link.title);
+  }
 
   return (
     <ConfigProvider
@@ -28,6 +33,7 @@ export default function FilterButton() {
     >
       <div className="anchor-wrapper">
         <Anchor
+          onClick={handleClick}
           direction="horizontal"
           items={AnchorItems}
           className="anchor"

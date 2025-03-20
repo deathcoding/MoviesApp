@@ -3,13 +3,14 @@ import { Spin } from "antd";
 export default function LoadingSpin() {
   const contentStyle = {
     padding: 50,
+    marginBottom: "12px",
     height: "70vh",
-    background: "rgba(0, 0, 0, 0.05)",
+    background: "rgb(255, 255, 255)",
     borderRadius: 4,
   };
 
   return (
-    <Spin tip="Loading, please wait" size="large">
+    <Spin tip="Загрузка, подождите" size="large">
       <div style={contentStyle}></div>
     </Spin>
   );

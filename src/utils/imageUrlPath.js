@@ -1,4 +1,4 @@
-export default function imgUrl(imgPath) {
+export default function imgUrlPath(imgPath) {
   if (imgPath === null) {
     return "/img/Z2000128438.jpg";
   } else {

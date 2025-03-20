@@ -1,55 +1,20 @@
 import "./MovieList.css";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import MoviePagination from "../Pagination/Pagination";
 import LoadingSpin from "../LoadingSpin/LoadingSpin";
 import AlertMessage from "../AlertMessage/AlertMessage";
+import useMovieSearch from "../../hooks/useMovieSearch.js";
 
-export default function MovieList() {
-  const [moviesData, setMoviesData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  const options = {
-    method: "GET",
-    url: "https://api.themoviedb.org/3/search/movie",
-    params: {
-      query: "The Lord of the Rings",
-      include_adult: "false",
-      language: "en-US",
-      page: "1",
-    },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMGMzNjNkYWVhZTRhM2MzN2MyNmE2ZjMxMWUyMzU0OCIsIm5iZiI6MTc0MTY4MzEyNy4yNDEsInN1YiI6IjY3Y2ZmOWI3NjY4OTJiYWQ2MjgxMWIzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lH0NZFFAOhjJZgYFEc_OHQcPNK2es5ZJVGzsuc65poc",
-    },
-  };
+export default function MovieList({ inputText }) {
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    let ignore = false;
-    setMoviesData([]);
-    axios
-      .request(options)
-      .then((res) => {
-        if (!ignore) {
-          setIsLoaded(true);
-          setMoviesData(res.data.results);
-          console.log("Основные данные", res.data);
-          console.log("Массив фильмов", res.data.results);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsLoaded(true);
-        setError(true);
-      });
+    setCurrentPage(1); // Сброс на первую страницу при новом поиске
+  }, [inputText]);
 
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  const { moviesData, isLoaded, error, isEmptyResults, totalPages } =
+    useMovieSearch(inputText, currentPage);
 
   const movies = moviesData.map((movie) => {
     return (
@@ -65,13 +30,36 @@ export default function MovieList() {
     );
   });
 
-  if (error) return <AlertMessage text={"Oopss... something went wrong =("} />;
+  function handleClick(page) {
+    setCurrentPage(page);
+  }
+
+  // if (moviesData.length === 0 && !isEmptyResults)
+  //   return (
+  //     <div className="poster">
+  //       <h1 className="poster_title">Movies App</h1>
+  //       <img className="img_poster" src="/img/guide.png" />
+  //     </div>
+  //   );
+  if (error) return <AlertMessage text={"Ой... Что то пошло не так =("} />;
   else if (!isLoaded) return <LoadingSpin />;
+  else if (isEmptyResults)
+    return (
+      <span className="empty_results">
+        {"Нет результатов для этого запроса =("}
+      </span>
+    );
   else {
     return (
       <>
         <section className="movie-list">{movies}</section>
-        <MoviePagination />
+        {moviesData.length > 0 && (
+          <MoviePagination
+            onChange={handleClick}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        )}
       </>
     );
   }
