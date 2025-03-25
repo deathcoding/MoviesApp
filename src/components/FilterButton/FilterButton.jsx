@@ -1,45 +1,34 @@
 import { Anchor, ConfigProvider } from "antd";
 import "./FilterButton.css";
 
-export default function FilterButton({ setActiveFilter }) {
-  const AnchorItems = [
-    {
-      key: "search",
-      title: "Search",
-      href: "#Search",
-    },
-    {
-      key: "rated",
-      title: "Rated",
-      href: "#Rated",
-    },
-  ];
-
-  function handleClick(e, link) {
-    e.preventDefault();
-    setActiveFilter(link.title);
+export default function FilterButton({ activeFilter, setActiveFilter }) {
+  function handleClick(e) {
+    if (e.target.className === "rate_button") {
+      setActiveFilter("Rate");
+    }
+    if (e.target.className === "search_button") {
+      setActiveFilter("Search");
+    }
   }
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          /* here is your global tokens */
-          colorPrimary: "#DA70D6",
-          colorText: "white",
-          fontSize: "22px",
-        },
-      }}
-    >
-      <div className="anchor-wrapper">
-        <Anchor
-          onClick={handleClick}
-          direction="horizontal"
-          items={AnchorItems}
-          className="anchor"
-          affix={false}
-        />
-      </div>
-    </ConfigProvider>
+    <div className="filters">
+      <button
+        onClick={handleClick}
+        className={
+          activeFilter === "Search" ? "search_button active" : "search_button"
+        }
+      >
+        Search
+      </button>
+      <button
+        onClick={handleClick}
+        className={
+          activeFilter === "Rate" ? "rate_button active" : "rate_button"
+        }
+      >
+        Rated
+      </button>
+    </div>
   );
 }

@@ -1,29 +1,20 @@
-import { useState, useEffect, useMemo } from "react";
-import debounce from "lodash.debounce";
 import "./Search.css";
 import MovieList from "../MovieList/MovieList";
 
-export default function Search({ inputSearchValue, setInputSearchValue }) {
-  // const [inputSearchValue, setInputSearchValue] = useState("");
-  const [debouncedInputValue, setDebouncedInputValue] = useState("");
-
-  const debouncedSetInput = useMemo(() => {
-    return debounce((value) => {
-      setDebouncedInputValue(value);
-    }, 1000);
-  }, []);
-
-  useEffect(() => {
-    debouncedSetInput(inputSearchValue);
-    return () => {
-      debouncedSetInput.cancel();
-    };
-  }, [inputSearchValue, debouncedSetInput]);
-
+export default function Search({
+  idAuthorization,
+  inputSearchValue,
+  setInputSearchValue,
+  debouncedInputValue,
+  searchResults,
+  currentPage,
+  setCurrentPage,
+  ratings,
+  addRating,
+}) {
   function handleInputChange(event) {
     setInputSearchValue(event.target.value);
   }
-
   return (
     <>
       <input
@@ -32,7 +23,15 @@ export default function Search({ inputSearchValue, setInputSearchValue }) {
         placeholder="Введите название фильма..."
         className="search"
       />
-      <MovieList inputText={debouncedInputValue} />
+      <MovieList
+        ratings={ratings}
+        addRating={addRating}
+        idAuthorization={idAuthorization}
+        inputText={debouncedInputValue}
+        searchResults={searchResults}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 }

@@ -1,16 +1,14 @@
 @media screen and (min-width: 767px) {
-  .movie_card {
+  .card {
     display: flex;
     flex-direction: row;
-    background-color: rgba(229, 223, 238, 0.519);
-    min-width: 454px;
+    background-color: rgba(255, 255, 255, 0.816);
+    width: 454px;
     min-height: 283px;
     position: relative;
     height: 100%;
-  }
+    border-radius: 6px;
 
-  .card {
-    display: flex;
     font-size: 12px;
     font-weight: 400;
     line-height: 22px;
@@ -20,6 +18,7 @@
     width: 183px;
     height: 281px;
     align-self: center;
+    border-radius: 6px;
   }
 
   .description {
@@ -42,6 +41,8 @@
   }
 
   .title_text {
+    display: flex;
+    flex-wrap: wrap;
     max-width: 200px;
     min-height: 44px;
     font-weight: 400;
@@ -56,6 +57,8 @@
 
   .tags {
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 2px;
   }
 
   .rate_circle {
@@ -64,7 +67,7 @@
     align-items: center;
     width: 30px;
     height: 30px;
-    border: 2px solid rgb(233, 209, 0);
+    border: 2px solid;
     border-radius: 50%;
     position: absolute;
     top: 12px;
@@ -80,23 +83,33 @@
     position: absolute;
     bottom: 12px;
   }
+
+  .red {
+    border-color: #e90000;
+  }
+  .orange {
+    border-color: #e97e00;
+  }
+  .yellow {
+    border-color: #e9d100;
+  }
+  .green {
+    border-color: #66e900;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  .movie_card {
-    display: flex;
-    flex-direction: row;
-    background-color: rgba(229, 223, 238, 0.519);
-  }
-
   .card {
-    display: flex;
+    position: relative;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.816);
+    width: 100%;
   }
 
   .movie_image {
     width: 60px;
     height: 91px;
-    position: absolute;
+    position: absolute; /* Оставляем absolute */
     top: 9px;
     left: 12px;
   }
@@ -106,7 +119,7 @@
   }
 
   .header {
-    margin-left: 83px;
+    margin-left: 83px; /* Оставляем отступ для картинки */
   }
 
   .title {
@@ -117,7 +130,7 @@
   .title_text {
     font-size: 20px;
     font-weight: 400;
-    width: 70%;
+    max-width: 250px;
   }
 
   .date {
@@ -127,6 +140,10 @@
   .tags {
     margin-top: 9px;
     display: flex;
+    flex-wrap: wrap;
+  }
+  .text {
+    /* min-width: 387px; */
   }
 
   .rate_circle {
@@ -143,5 +160,18 @@
     display: flex;
     justify-content: flex-end;
     padding-top: 10px;
+  }
+
+  .red {
+    border-color: #e90000;
+  }
+  .orange {
+    border-color: #e97e00;
+  }
+  .yellow {
+    border-color: #e9d100;
+  }
+  .green {
+    border-color: #66e900;
   }
 }

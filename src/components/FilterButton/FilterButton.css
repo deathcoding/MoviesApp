@@ -16,3 +16,30 @@
     margin-bottom: 19px;
   }
 }
+
+.filters {
+  padding-top: 25px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  width: 146px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.search_button,
+.rate_button {
+  padding-bottom: 10px;
+  font-size: 20px;
+  border: none; /* убираем стандартный бордер */
+  border-bottom: 2px solid transparent; /* прозрачный бордер по умолчанию */
+  /* height: 25px; */
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+}
+
+.active {
+  border-bottom: 4px solid rgb(75, 75, 228);
+}
