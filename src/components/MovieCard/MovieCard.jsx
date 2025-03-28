@@ -9,7 +9,7 @@ import addRatingRequest from "../../api/addRatingRequest";
 import { GenresContext } from "../../Contexts/GenresContext";
 import { useContext } from "react";
 import defineGenres from "../../utils/defineGenres";
-import defineRatingInCard from "../../utils/defineRatingCard";
+import defineRatingInCard from "../../utils/defineRatingInCard";
 
 export default function MovieCard({
   idAuthorization,
