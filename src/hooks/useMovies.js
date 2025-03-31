@@ -13,20 +13,20 @@ export default function useMovies() {
   const [isEmptyResults, setIsEmptyResults] = useState(false);
 
   const debouncedSetInput = useMemo(() => {
-    return debounce((value) => {
+    return debounce(function (value) {
       setDebouncedInputValue(value);
     }, 1000);
   }, []);
 
   useEffect(() => {
     debouncedSetInput(inputSearchValue);
-    return () => {
+    return function () {
       debouncedSetInput.cancel();
     };
   }, [inputSearchValue, debouncedSetInput]);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    async function fetchMovies() {
       if (!debouncedInputValue || debouncedInputValue.trim().length < 3) {
         setMoviesData([]);
         setTotalPages(0);
@@ -56,17 +56,20 @@ export default function useMovies() {
 
       try {
         const response = await axios.request(options);
-        setMoviesData(response.data.results || []);
+        const results = response.data.results || [];
+
+        setMoviesData(results);
         setTotalPages(response.data.total_pages || 0);
-        setIsEmptyResults(response.data.results.length === 0);
+        setIsEmptyResults(results.length === 0);
         setIsLoaded(true);
-      } catch {
-        setError(true);
-        setIsLoaded(true);
+      } catch (error) {
+        setError(error.message || "Something went wrong");
         setMoviesData([]);
+        setTotalPages(0);
         setIsEmptyResults(false);
+        setIsLoaded(true);
       }
-    };
+    }
 
     fetchMovies();
   }, [debouncedInputValue, currentPage]);
